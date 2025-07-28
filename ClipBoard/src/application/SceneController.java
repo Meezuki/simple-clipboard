@@ -8,20 +8,46 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+
+
 public class SceneController {
+	
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
 	
-	static void copyToClipboard(String text) {
-	    java.awt.Toolkit.getDefaultToolkit().getSystemClipboard()
-	        .setContents(new java.awt.datatransfer.StringSelection(text), null);
+	
+	@FXML
+	public Label label_content;
+	
+	@FXML
+	public TextField textInputField;
+	
+	public void save(ActionEvent e) throws IOException{
+		String inputText = textInputField.getText();
+		FileHandling.create_file("clipboardContent");
+		FileHandling.write_file("clipboardContent", inputText);
+		initialize();
 	}
 	
-	public void copy(ActionEvent e) {
-		String text = "to be implemented";
+	
+	public void initialize() throws IOException {
+		String labelText = FileHandling.read_file("clipboardContent");
+		label_content.setText(labelText);
+		
+	}
+	
+	static void copyToClipboard(String textToBeCopied) {
+	    java.awt.Toolkit.getDefaultToolkit().getSystemClipboard()
+	        .setContents(new java.awt.datatransfer.StringSelection(textToBeCopied), null);
+	}
+	
+	public void copy(ActionEvent e) throws IOException {
+		String text = FileHandling.read_file("clipboardContent");
 		copyToClipboard(text);
 	}
 	
@@ -44,6 +70,7 @@ public class SceneController {
 		stage.setScene(scene);
 		stage.show();
 	}
+	
 	
 
 }

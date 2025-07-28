@@ -6,37 +6,38 @@ import java.io.IOException;
 
 public class Content {
 	private String title;
-	private String text;
+	private String fileName;
 	
-	public void addToFile(String text, String title) {
-		try {
-		      File newFile = new File(title + ".txt");
-		      if (newFile.createNewFile()) {
-		        System.out.println("File created: " + newFile.getName());
-		      } else {
-		        System.out.println("File already exists.");
-		      }
-		      
-		      FileWriter myWriter = new FileWriter("filename.txt");
-		      myWriter.write(text);
-		      myWriter.close();
-		    } catch (IOException e) {
-		      System.out.println("An error occurred.");
-		      e.printStackTrace();
-		    }
-	}
+//	public void addToFile() {
+//		try {
+//		      //File newFile = new File(title + ".txt");
+//				File newFile = new File("clipboardContent.txt");
+//		      if (newFile.createNewFile()) {
+//		        System.out.println("File created: " + newFile.getName());
+//		      } else {
+//		        System.out.println("File already exists.");
+//		      }
+//		      
+//		      FileWriter myWriter = new FileWriter(newFile);
+//		      myWriter.write(fileName);
+//		      myWriter.close();
+//		    } catch (IOException e) {
+//		      System.out.println("An error occurred.");
+//		      e.printStackTrace();
+//		    }
+//	}
 	
-	public Content(String title, String text) {
+	public Content(String title, String fileName) {
 		this.setTitle(title);
-		this.setText(text);
+		this.setfileName(fileName);
 	}
 
-	public String getText() {
-		return text;
+	public String getfileName() {
+		return fileName;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public void setfileName(String fileName) {
+		this.fileName = fileName;
 	}
 
 	public String getTitle() {
